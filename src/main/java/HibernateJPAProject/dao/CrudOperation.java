@@ -17,9 +17,10 @@ public class CrudOperation implements Crud{
     @Override
     public void insert() {
         EntityManager em = DBConnection.getEntryManagerFactory().createEntityManager();
-        EntityTransaction t = em.getTransaction();
+        EntityTransaction t = em.getTransaction();//------------session started----------
         // -----Start Transaction------
         t.begin();
+
         System.out.println("Enter no of data to be entered");
         int nofData = sc.nextInt();
         int max = 0;
@@ -46,7 +47,7 @@ public class CrudOperation implements Crud{
 
         t.commit();// --------end transaction----------
 
-        em.close();
+        em.close();// ------session closed---------
         System.out.println("Data added successfully!!!");
 
     }
@@ -93,8 +94,6 @@ public class CrudOperation implements Crud{
     public void fetchById() {
 
         EntityManager em = DBConnection.getEntryManagerFactory().createEntityManager();
-        EntityTransaction t= em.getTransaction();
-        t.begin();
 
         System.out.println("Enter the EmployeeId to fetch");
         Integer fid=sc.nextInt();
@@ -102,9 +101,26 @@ public class CrudOperation implements Crud{
         Employee e=em.find(Employee.class, fid);
 
         if(e != null){
-            System.out.println("Employee Id: "+ e.getEmployee_Id()+"Employee Name: "+ e.getEmployee_Name()+"Employee Phone No: "+e.getEmployee_PhoneNo()+"Employee Dept: "+e.getEmployee_Dept());
+            System.out.println("Employee Id: "+ e.getEmployee_Id()+" Employee Name: "+ e.getEmployee_Name()+" Employee Phone No: "+e.getEmployee_PhoneNo()+" Employee Dept: "+e.getEmployee_Dept());
 
-            t.commit();
+            System.out.println("Employee Fetched by Id Successfully");
+        }
+        em.close();
+
+        //-----------------------------------------------------------------------------------------
+        EntityManager em1 = DBConnection.getEntryManagerFactory().createEntityManager();
+
+        System.out.println("Enter the EmployeeId to fetch");
+        Integer fid1=sc.nextInt();
+
+        Employee e1=em1.find(Employee.class, fid1);
+
+
+
+        if(e1 != null){
+            System.out.println("Employee Id: "+ e1.getEmployee_Id()+" Employee Name: "+ e1.getEmployee_Name()+" Employee Phone No: "+e1.getEmployee_PhoneNo()+" Employee Dept: "+e1.getEmployee_Dept());
+
+
             em.close();
             System.out.println("Employee Fetched by Id Successfully");
 
@@ -112,6 +128,7 @@ public class CrudOperation implements Crud{
         else {
             System.out.println("Employee Not Found");
         }
+        em1.close();
     }
 
     @Override

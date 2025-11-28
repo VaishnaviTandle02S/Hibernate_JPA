@@ -13,7 +13,7 @@ https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd"
 
             <!-- DB Connection -->
             <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
-            <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/EmpHjpaOdb?createDatabaseIfNotExist=true"/>
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/Hibernate_JPA_EMPDb?createDatabaseIfNotExist=true"/>
             <property name="jakarta.persistence.jdbc.user" value="root"/>
             <property name="jakarta.persistence.jdbc.password" value="kutiya"/>
 
